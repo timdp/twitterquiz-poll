@@ -7,6 +7,6 @@ function load_configuration() {
     $GLOBALS['config'] = json_decode(file_get_contents($file), true);
   }
   if (!$GLOBALS['config']) {
-    throw new Exception('config.json not found');
+    throw new Exception('Failed to load configuration');
   }
 }
