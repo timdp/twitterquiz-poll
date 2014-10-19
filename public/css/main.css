@@ -85,3 +85,17 @@ table#results .votes {
 table#results .perc {
   text-align: right;
 }
+
+#fork-me {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+}
+
+@media screen and (min-width: 800px) {
+  #fork-me {
+    display: block;
+  }
+}
