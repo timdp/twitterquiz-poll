@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+<p class="lead">Op <strong>22 november 2014</strong> vindt de derde
+<a href="https://twitter.com/search?q=%23twitterquiz"
+target="_blank">#twitterquiz</a> plaats.
+Met deze peiling gaan we alvast na welk team het meeste kans maakt om te winnen.</p>
+
+<p>Om deel te nemen aan de peiling en de tussenstand te bekijken, moet
+je eerst <strong>inloggen met je Twitteraccount</strong>.
+Deze toepassing zal enkel controleren of je ingelogd bent, en dus
+<strong>geen</strong> tweets posten, accounts volgen enzovoort.</p>
+
+<div style="margin: 25px 0">
+<a href="{{ site_url }}/auth"
+class="btn-large btn-success pull-right">Ik ben er klaar voor!</a>
+<div style="padding-top: 21px">
+{% include "_share.html" %}
+</div>
+</div>
+
+{% endblock %}

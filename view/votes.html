@@ -1,0 +1,27 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+<p>Er werd tot nu toe als volgt gestemd door in totaal
+<strong>{{ votes | length }} respondenten</strong>:</p>
+
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Gebruiker</th>
+<th style="text-align: center">Stem</th>
+<th style="text-align: right">Datum</th>
+</thead>
+<tbody>
+{% for n, r in votes %}
+<tr>
+<td><a href="https://twitter.com/intent/user?user_id={{ r.user_id }}"
+target="_blank">@{{ r.screen_name }}</td>
+<td style="text-align: center">{{ r.vote }}</td>
+<td style="text-align: right">{{ r.when | date("d/m H:i") }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% endblock %}

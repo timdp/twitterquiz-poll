@@ -1,0 +1,93 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+<p>
+{% if screen_name is not empty %}
+Hallo, <strong>@{{ screen_name }}</strong>.
+{% endif %}
+{% if vote %}
+Jij stemde voor <strong>{{ vote }}</strong>.
+{% endif %}
+{% if total_votes > 1 %}
+Er werden al <strong>{{ total_votes }} stemmen</strong> uitgebracht.
+{% endif %}
+{% if not vote %}
+<a href="{{ site_url }}/">Stem nu!</a>
+{% endif %}
+De tussenstand is als volgt:
+</p>
+
+{% if total_votes > 0 %}
+<script src="//www.google.com/jsapi"></script>
+<script>
+{% autoescape false %}
+{% set chart_width = 468 %}
+{% set chart_height = 300 %}
+{% set chart_padding = 12 %}
+google.load('visualization', '1', {packages:['corechart']});
+google.setOnLoadCallback(function() {
+  var container = document.getElementById('chart');
+  var chartData = {{ results_min|json_encode() }};
+  chartData.unshift(['Team', 'Stemmen']);
+  chartData = google.visualization.arrayToDataTable(chartData);
+  var options = {
+    is3D: true,
+    chartArea: {
+      left:   {{chart_padding}},
+      top:    {{chart_padding}},
+      width:  {{chart_width}} - 2 * {{chart_padding}},
+      height: {{chart_height}} - 2 * {{chart_padding}}
+    },
+    legend: {
+      alignment: 'center'
+    }
+  };
+  new google.visualization.PieChart(container).draw(chartData, options);
+});
+{% endautoescape %}
+</script>
+<div id="chart" style="width: {{chart_width}}px; height: {{chart_height}}px; margin-top: 8px"></div>
+{% endif %}
+
+{% set prev_votes = -1 %}
+
+<table id="results" class="table table-striped">
+<thead>
+<tr>
+<th class="pos">&nbsp;</th>
+<th class="team">Team</th>
+<th class="votes">Stemmen</th>
+<th class="perc">Aandeel</th>
+</thead>
+<tbody>
+{% for n, r in results %}
+<tr class="{% if vote == r.name %}success {% endif %}{% if screen_name in r.members %}info{% endif %}">
+<td class="pos">{% if prev_votes != r.votes %}{{ n + 1 }}{% endif %}</td>
+<td class="team"><strong class="name">{{ r.name }}</strong>
+<span class="members">
+{% for m in r.members %}
+<a href="https://twitter.com/{{ m }}" target="_blank">@{{ m }}</a>
+{% endfor %}
+</span></td>
+<td class="votes">{{ r.votes }}</td>
+<td class="perc">
+{% if total_votes > 0 %}
+  {% set perc = 100 * r.votes / total_votes %}
+{% else %}
+  {% set perc = 0 %}
+{% endif %}
+{{ perc | number_format(1, ',', '.') }}%
+</td>
+</tr>
+{% set prev_votes = r.votes %}
+{% endfor %}
+</tbody>
+</table>
+
+<div style="border-top: 1px solid #ddd; padding-top: 15px; margin-top: 30px">
+<div class="pull-right">Deel deze link en laat je vrienden ook meestemmen!</div>
+{% include "_share.html" %}
+</div>
+
+{% endblock %}

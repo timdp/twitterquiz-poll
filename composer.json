@@ -1,0 +1,6 @@
+{
+    "require": {
+        "themattharris/tmhoauth": "*",
+        "twig/twig": "1.*"
+    }
+}
