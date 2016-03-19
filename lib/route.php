@@ -42,6 +42,9 @@ function get_request_url() {
   $proto = $https ? 'https' : 'http';
   $host = $_SERVER['HTTP_HOST'];
   $path = $_SERVER['PATH_INFO'];
+  if (empty($path)) {
+    $path = '/';
+  }
   return $proto . '://' . $host . $path;
 }
 

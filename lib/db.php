@@ -84,13 +84,22 @@ function _connect_to_database() {
   if (array_key_exists('dbh', $GLOBALS)) {
     return;
   }
-  $comp = parse_url($_ENV['DATABASE_URL']);
-  $data['host'] = $comp['host'];
-  $data['port'] = $comp['port'];
-  $data['user'] = $comp['user'];
-  $data['password'] = $comp['pass'];
-  $data['dbname'] = substr($comp['path'], 1);
-  $data['sslmode'] = 'require';
+  if ($_ENV['OPENSHIFT_POSTGRESQL_DB_URL']) {
+    $data['host'] = $_ENV['OPENSHIFT_POSTGRESQL_DB_HOST'];
+    $data['port'] = $_ENV['OPENSHIFT_POSTGRESQL_DB_PORT'];
+    $data['user'] = $_ENV['OPENSHIFT_POSTGRESQL_DB_USERNAME'];
+    $data['password'] = $_ENV['OPENSHIFT_POSTGRESQL_DB_PASSWORD'];
+    $data['dbname'] = 'twitterquiz';
+    // $data['sslmode'] = 'require';
+  } else {
+    $comp = parse_url($_ENV['DATABASE_URL']);
+    $data['host'] = $comp['host'];
+    $data['port'] = $comp['port'];
+    $data['user'] = $comp['user'];
+    $data['password'] = $comp['pass'];
+    $data['dbname'] = substr($comp['path'], 1);
+    $data['sslmode'] = 'require';
+  }
   $str = implode(' ', array_map(function($key) use (&$data) {
     return "$key={$data[$key]}";
   }, array_keys($data)));

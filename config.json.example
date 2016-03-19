@@ -10,76 +10,65 @@
     "consumer_key": "...",
     "consumer_secret": "..."
   },
-  "options": [
-    {
-      "name": "Unic",
-      "members": ["Goedles", "lamazone", "dbuntinx", "kristofnizet"]
-    }, {
-      "name": "Ik ben blij dat gij in mijn team zit",
-      "members": ["gilslaura", "nielshierhe", "jerupt", "EmilyMichiels"]
-    }, {
-      "name": "Team Dik & Lelijk",
-      "members": ["_katrijn", "Julieedv", "DonDams", "zegmaarbas"]
-    }, {
-      "name": "Kwisverstand",
-      "members": ["eenonmens", "allocestqui", "tisnicks", "ElleEase"]
-    }, {
-      "name": "Whiskypedia",
-      "members": ["boyand1", "MrDarkley", "Twezus_", "farahfouffriau"]
-    }, {
-      "name": "Te Boer 2.0",
-      "members": ["Slingers13", "Kreejs", "hetjoch", "666shades"]
-    }, {
-      "name": "Les Quizerables",
-      "members": ["Anneke2374", "TVananderoye", "phildebruin", "lvandingenen"]
-    }, {
-      "name": "Niet in mijn Peutertuin",
-      "members": ["ruben_vanlent", "tmdpw", "pieterdesmet", "bollegijz"]
-    }, {
-      "name": "Grattis pa födelsedagen",
-      "members": ["kasjmier", "gunterderwa", "tuesadorable", "CDIMI"]
-    }, {
-      "name": "Drie wijntjes en een pintje",
-      "members": ["MrtnDb", "KatVanMul", "WAHMama", "Tamara_vdm"]
-    }, {
-      "name": "De Winnaars",
-      "members": ["sauerbabs", "IkBenLauren", "herr_strauf", "IlRedeimondani"]
-    }, {
-      "name": "Yin & Yang",
-      "members": ["Liesjevdw", "Sissi_kaizerin", "olvr_vrmr"]
-    }, {
-      "name": "Djenghis Kahn is ne Mongool",
-      "members": ["DiamondCityLove", "dweezzill", "Wit_Konijn", "strikeplank"]
-    }, {
-      "name": "Team Vetoranen",
-      "members": ["MaartenvanMeer", "matthieuvs", "katia_a"]
-    }, {
-      "name": "Drie Man en een Paardenkop",
-      "members": ["79barbara79", "slijmpistool", "campspeter", "FrankVanLaeken"]
-    }, {
-      "name": "Poor, stupid & ugly",
-      "members": ["mamiracoli", "dirt_sa", "wanness", "SaschaAerts"]
-    }, {
-      "name": "Het Donkere Verleden van Jan Jambon",
-      "members": ["Nevelinge", "antonvoloshin", "JHerregods", "fakeplasticmax"]
-    }, {
-      "name": "Til hamingju med afmaelid",
-      "members": ["haploc", "karamelleke", "V4L3R135M37", "GreetSmekens"]
-    }, {
-      "name": "Pandapower",
-      "members": ["miss_punt", "mieghie666", "wim_smits", "jeroomdm"]
-    }, {
-      "name": "In ons hart, dààr zit Kim Jong-Un",
-      "members": ["mbaeten", "pauleyben", "RSchraey", "_evelienc"]
-    }, {
-      "name": "Den elfden sandwich (reserve)",
-      "members": ["wvanparys", "Sari2_0", "AtheistHoly", "rodcordi"]
-    }, {
-      "name": "Los Incompletos (reserve)",
-      "members": ["deadeyes", "Toespijs", "mathyvanvoorden", "johvdk"]
-    }, {
-      "name": "Team Occupy (reserve)",
-      "members": ["LisaLeysen", "swerbrou", "_kleingeelvisje", "HannahEeckhout"]
-    }
- ]
+  "options": [{
+    "name": "De late inschrijvers",
+    "members": ["ElleEase", "boyand1", "jerupt", "Nilshierhe", "dekevain"]
+  }, {
+    "name": "Een Lekker vlezeke",
+    "members": ["Lisa_agua", "HVaerendonck", "ntone"]
+  }, {
+    "name": "Vroege Vlucht",
+    "members": ["opportunitiesbe", "nonkelsam", "mdevrieze", "maartendegendt", "dropje"]
+  }, {
+    "name": "Zwakke Geslacht",
+    "members": ["Slingers13", "hetjoch", "Nonunsenses", "GlennDubbelN"]
+  }, {
+    "name": "Belle en de Beesten",
+    "members": ["verbeke_t", "VevaDan", "wvanparys", "RobbySallaets", "dewlanna"]
+  }, {
+    "name": "Hippe Spitsvondige naam",
+    "members": ["AlessandraBln", "yavapu", "PandaLimpens", "teaforjulie", "RutgerGM"]
+  }, {
+    "name": "Team Foefborstel",
+    "members": ["Couckedoos", "jsprdpw", "spinocle", "EgonTemm"]
+  }, {
+    "name": "Blind Getrouwd",
+    "members": ["didbruyn", "krisrackham", "mmmieke_be"]
+  }, {
+    "name": "Lomp = vis",
+    "members": ["Polypieter", "herr_strauf", "iejan_v", "Lauraverbieren", "pieter_haeck"]
+  }, {
+    "name": "Team Smartphone",
+    "members": ["Tinkerbellxx12", "IlRedeimondani", "Ushi_Lin", "hannescool", "survivalitis"]
+  }, {
+    "name": "Team Occupy",
+    "members": ["ECardinael", "HannahEeckhout", "_kleingeelvisje", "enjoytheflames", "LeilaVDM"]
+  }, {
+    "name": "Iedereen Single",
+    "members": ["inflorescentie", "Sari2_0", "AtheistHoly", "MrDarkley", "rodcordi"]
+  }, {
+    "name": "Het Quizteam Mega Toby",
+    "members": ["RSchraey", "mbaeten", "pauleyben", "swerbrou", "inebenzine"]
+  }, {
+    "name": "De Politie uw vriend",
+    "members": ["Nevelinge", "JHerregods", "antonvoloshin"]
+  }, {
+    "name": "Cenosillicaphobia",
+    "members": ["Zwartgallig_", "janvanasscheB", "Birthdaygirl81", "Tamara_vdm", "SachaAerts"]
+  }, {
+    "name": "Al wie boven ons staat",
+    "members": ["79barbara79", "FrankVanLaeken", "tremans", "LucVandingenen"]
+  }, {
+    "name": "Djenghis Kahn = Mongool",
+    "members": ["Wit_Konijn", "leenvdmoere", "strikeplank", "DiamondCityLove", "daveydegrande"]
+  }, {
+    "name": "Boobs & Beards",
+    "members": ["MrtnDb", "Omaya_", "Liesjevdw", "Dirt_sA", "olvr_vrmr"]
+  }, {
+    "name": "Team Volkoren",
+    "members": ["__Ohan_", "tinemoniek", "haploc", "kasjmier", "chateaubrys"]
+  }, {
+    "name": "De maskers vallen af",
+    "members": ["MDevoldere", "tmdpw", "bollegijz", "ruben_vanlent", "peterdedecker"]
+  }]
 }
