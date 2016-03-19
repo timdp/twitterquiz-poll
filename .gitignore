@@ -1,5 +1,6 @@
 [Tt]humbs.db
 *.DS_Store
 /cache/
+!/cache/.keep
 /vendor/
 /config.json
