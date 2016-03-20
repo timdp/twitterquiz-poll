@@ -13,22 +13,10 @@ body {
   border: 0;
 }
 
-h1, #ad {
-  border-bottom: 1px solid #DDD;
-}
-
 h1 {
   margin: 0;
   padding: 0 0 25px 0;
   letter-spacing: -1px;
-}
-
-#ad {
-  margin-bottom: 25px;
-  padding: 10px 0;
-  text-align: center;
-  height: 60px;
-  overflow: hidden;
 }
 
 #options {
