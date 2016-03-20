@@ -6,9 +6,9 @@ function verify_controller_preconditions() {
 
 function run_controller() {
   $vote_num = get_user_vote(get_user_id());
-  $vote = !is_null($vote_num) ?
-    $GLOBALS['config']['options'][$vote_num - 1]['name'] :
-    null;
+  $vote = !is_null($vote_num)
+    ? $GLOBALS['config']['options'][$vote_num - 1]['name']
+    : null;
   $results = get_results();
   $results_min = array();
   $total = 0;

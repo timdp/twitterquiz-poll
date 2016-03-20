@@ -44,9 +44,9 @@ function get_results() {
     $results[] = $info;
   }
   usort($results, function (&$a, &$b) {
-    return ($a['votes'] != $b['votes']) ?
-      $b['votes'] - $a['votes'] :
-      $a['earliest_vote'] - $b['earliest_vote'];
+    return ($a['votes'] != $b['votes'])
+      ? $b['votes'] - $a['votes']
+      : $a['earliest_vote'] - $b['earliest_vote'];
   });
   return $results;
 }
