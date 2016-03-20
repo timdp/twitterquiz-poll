@@ -10,5 +10,6 @@ function render($view, $params = array()) {
   );
   $params['site_url'] = $GLOBALS['config']['site_url'];
   $params['site_title'] = $GLOBALS['config']['site_title'];
+  $params['site_description'] = $GLOBALS['config']['site_description'];
   echo $twig->render($view . '.html', $params);
 }
