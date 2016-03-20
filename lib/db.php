@@ -84,28 +84,40 @@ function _connect_to_database() {
   if (array_key_exists('dbh', $GLOBALS)) {
     return;
   }
-  if ($_ENV['OPENSHIFT_POSTGRESQL_DB_URL']) {
-    $data['host'] = $_ENV['OPENSHIFT_POSTGRESQL_DB_HOST'];
-    $data['port'] = $_ENV['OPENSHIFT_POSTGRESQL_DB_PORT'];
-    $data['user'] = $_ENV['OPENSHIFT_POSTGRESQL_DB_USERNAME'];
-    $data['password'] = $_ENV['OPENSHIFT_POSTGRESQL_DB_PASSWORD'];
-    $data['dbname'] = 'twitterquiz';
-    // $data['sslmode'] = 'require';
-  } else {
-    $comp = parse_url($_ENV['DATABASE_URL']);
-    $data['host'] = $comp['host'];
-    $data['port'] = $comp['port'];
-    $data['user'] = $comp['user'];
-    $data['password'] = $comp['pass'];
-    $data['dbname'] = substr($comp['path'], 1);
-    $data['sslmode'] = 'require';
-  }
-  $str = implode(' ', array_map(function($key) use (&$data) {
-    return "$key={$data[$key]}";
-  }, array_keys($data)));
-  $res = pg_connect($str);
+  $db_url = _get_connection_string();
+  $res = pg_connect($db_url);
   if ($res === false) {
     throw new Exception('Database connection failed');
   }
   $GLOBALS['dbh'] = $res;
+}
+
+function _get_connection_string() {
+  $data = (!empty($_ENV['OPENSHIFT_POSTGRESQL_DB_URL']))
+    ? _get_connection_data_from_openshift_env()
+    : _get_connection_data_from_database_url($_ENV['DATABASE_URL']);
+  return implode(' ', array_map(function($key) use (&$data) {
+    return "$key={$data[$key]}";
+  }, array_keys($data)));
+}
+
+function _get_connection_data_from_openshift_env() {
+  $data = array();
+  $data['host'] = $_ENV['OPENSHIFT_POSTGRESQL_DB_HOST'];
+  $data['port'] = $_ENV['OPENSHIFT_POSTGRESQL_DB_PORT'];
+  $data['user'] = $_ENV['OPENSHIFT_POSTGRESQL_DB_USERNAME'];
+  $data['password'] = $_ENV['OPENSHIFT_POSTGRESQL_DB_PASSWORD'];
+  $data['dbname'] = 'twitterquiz';
+  return $data;
+}
+
+function _get_connection_data_from_database_url($url) {
+  $comp = parse_url($url);
+  $data['host'] = $comp['host'];
+  $data['port'] = $comp['port'];
+  $data['user'] = $comp['user'];
+  $data['password'] = $comp['pass'];
+  $data['dbname'] = substr($comp['path'], 1);
+  $data['sslmode'] = 'require';
+  return $data;
 }
