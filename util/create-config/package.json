@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "dependencies": {
+    "twitter": "^1.7.0"
+  },
+  "devDependencies": {
+    "standard": "^9.0.2"
+  },
+  "scripts": {
+    "start": "node cli"
+  }
+}
