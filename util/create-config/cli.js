@@ -4,13 +4,12 @@ const Twitter = require('twitter')
 const fs = require('fs')
 const twitterAuth = require('./config/auth/twitter.json')
 
-const CONFIG_FILE = '../../config.json'
+const CONFIG_FILE = '../../config/teams.json'
 const LIST_OWNER = 'Kroy_Wendy'
 
 const client = new Twitter(twitterAuth)
 
 const main = async () => {
-  const config = require(CONFIG_FILE)
   const lists = (await client.get('lists/list', {screen_name: LIST_OWNER}))
     .filter(({description}) => description.toLowerCase().includes('twitterquiz 2017'))
     .map(({id_str: id, name, description}) => {
@@ -29,8 +28,8 @@ const main = async () => {
       .map(({screen_name: name}) => name)
       .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
   }))
-  config.options = lists.map(({name, members}) => ({name, members}))
-  fs.writeFileSync(CONFIG_FILE, JSON.stringify(config, null, 2), 'utf8')
+  const options = lists.map(({name, members}) => ({name, members}))
+  fs.writeFileSync(CONFIG_FILE, JSON.stringify(options, null, 2), 'utf8')
 }
 
 main().catch((err) => {

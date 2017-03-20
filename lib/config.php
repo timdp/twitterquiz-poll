@@ -1,12 +1,15 @@
 <?php
 
 function load_configuration() {
-  $GLOBALS['config'] = null;
-  $file = dirname(__FILE__) . '/../config.json';
-  if (file_exists($file)) {
-    $GLOBALS['config'] = json_decode(file_get_contents($file), true);
+  $base = dirname(__FILE__) . '/../config';
+  $GLOBALS['config'] = _read_json("$base/site.json");
+  $GLOBALS['config']['options'] = _read_json("$base/teams.json");
+  $GLOBALS['config']['twitter'] = _read_json("$base/auth/twitter.json");
+}
+
+function _read_json($file) {
+  if (!file_exists($file)) {
+    throw new Exception("File not found: $file");
   }
-  if (!$GLOBALS['config']) {
-    throw new Exception('Failed to load configuration');
-  }
+  return json_decode(file_get_contents($file), true);
 }
