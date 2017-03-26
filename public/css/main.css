@@ -1,9 +1,11 @@
 body {
-  padding: 35px 6px;
+  margin: 35px 10px;
+  padding: 0;
 }
 
 .container {
-  width: 468px;
+  width: auto;
+  max-width: 468px;
 }
 
 .form-actions {
@@ -16,7 +18,8 @@ body {
 h1 {
   margin: 0;
   padding: 0 0 25px 0;
-  letter-spacing: -1px;
+  font-size: 36px;
+  letter-spacing: -0.05ex;
 }
 
 #options {

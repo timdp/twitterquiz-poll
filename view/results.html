@@ -19,35 +19,48 @@ De tussenstand is als volgt:
 </p>
 
 {% if total_votes > 0 %}
+<div id="chart" style="padding-top: 67%; margin-top: 8px"></div>
 <script src="//www.google.com/jsapi"></script>
 <script>
 {% autoescape false %}
-{% set chart_width = 468 %}
-{% set chart_height = 300 %}
-{% set chart_padding = 12 %}
 google.load('visualization', '1', {packages:['corechart']});
-google.setOnLoadCallback(function() {
-  var container = document.getElementById('chart');
+google.setOnLoadCallback(function () {
   var chartData = {{ results_min|json_encode() }};
   chartData.unshift(['Team', 'Stemmen']);
-  chartData = google.visualization.arrayToDataTable(chartData);
-  var options = {
-    is3D: true,
-    chartArea: {
-      left:   {{chart_padding}},
-      top:    {{chart_padding}},
-      width:  {{chart_width}} - 2 * {{chart_padding}},
-      height: {{chart_height}} - 2 * {{chart_padding}}
-    },
-    legend: {
-      alignment: 'center'
-    }
+  var chartDataTable = google.visualization.arrayToDataTable(chartData);
+
+  var container = document.querySelector('.container');
+  var chartContainer = container.querySelector('#chart');
+  var pieChart = new google.visualization.PieChart(chartContainer);
+
+  var aspectRatio = chartContainer.clientWidth / chartContainer.clientHeight;
+  var padding = 12;
+
+  var draw = function () {
+    width = container.clientWidth;
+    height = width / aspectRatio;
+    chartContainer.style.width = width + 'px';
+    chartContainer.style.height = height + 'px';
+    chartContainer.style.paddingTop = '0';
+    pieChart.draw(chartDataTable, {
+      is3D: true,
+      chartArea: {
+        left: padding,
+        top: padding,
+        width: width - 2 * padding,
+        height: height - 2 * padding
+      },
+      legend: {
+        alignment: 'center'
+      }
+    });
   };
-  new google.visualization.PieChart(container).draw(chartData, options);
+
+  draw();
+  window.addEventListener('resize', draw);
 });
 {% endautoescape %}
 </script>
-<div id="chart" style="width: {{chart_width}}px; height: {{chart_height}}px; margin-top: 8px"></div>
 {% endif %}
 
 {% set prev_votes = -1 %}
@@ -66,9 +79,13 @@ google.setOnLoadCallback(function() {
 <td class="pos">{% if prev_votes != r.votes %}{{ n + 1 }}{% endif %}</td>
 <td class="team"><strong class="name">{{ r.name }}</strong>
 <span class="members">
-{% for m in r.members %}
-<a href="https://twitter.com/{{ m }}" target="_blank">@{{ m }}</a>
-{% endfor %}
+{% if r.members is empty %}
+  <span class="muted">(samenstelling onbekend)</span>
+{% else %}
+  {% for m in r.members %}
+  <a href="https://twitter.com/{{ m }}" target="_blank">@{{ m }}</a>
+  {% endfor %}
+{% endif %}
 </span></td>
 <td class="votes">{{ r.votes }}</td>
 <td class="perc">
@@ -86,7 +103,7 @@ google.setOnLoadCallback(function() {
 </table>
 
 <div style="border-top: 1px solid #ddd; padding-top: 15px; margin-top: 30px">
-<div class="pull-right">Deel deze link en laat je vrienden ook meestemmen!</div>
+<div class="pull-right">Deel deze link en laat je vrienden meestemmen!</div>
 {% include "_share.html" %}
 </div>
 

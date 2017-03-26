@@ -15,9 +15,13 @@ de vijfde #twitterquiz zal winnen en bevestig je keuze.</p>
 <input type="radio" name="vote" value="{{ n + 1 }}">
 <strong class="name">{{ v.name }}</strong>
 <span class="members">
-{% for m in v.members %}
-<a href="https://twitter.com/{{ m }}" target="_blank">@{{ m }}</a>
-{% endfor %}
+{% if v.members.length is empty %}
+  <span class="muted">(samenstelling onbekend)</span>
+{% else %}
+  {% for m in v.members %}
+  <a href="https://twitter.com/{{ m }}" target="_blank">@{{ m }}</a>
+  {% endfor %}
+{% endif }
 </span>
 </label>
 </div>

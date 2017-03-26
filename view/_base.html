@@ -5,15 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>{{ site_title }}</title>
 <meta name="description" content="{{ site_description }}">
-<script>
-(function () {
-  var width = 500
-  var scale = screen.width / width
-  var viewport = 'width=' + width  + ',user-scalable=yes,' +
-    'initial-scale=' + scale + ',minimum-scale=' + scale
-  document.write('<meta name="viewport" content="' + viewport + '">')
-})()
-</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="{{ site_url }}/css/bootstrap.min.css">
 <link rel="stylesheet" href="{{ site_url }}/css/main.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css">
